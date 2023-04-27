@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qotd
+  labels:
+    app: qotd
+spec:
+  selector:
+    matchLabels:
+     app: qotd
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: qotd
+    spec:
+      containers:
+        - name: qotd
+          image: quay.io/praveenkumar/qotd:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+              protocol: TCP
